@@ -15,7 +15,7 @@ cur.execute(create_life)
 conn.commit()
 
 
-class sql_functions:
+class starting_life_list:
 
     sql = "SELECT life FROM lifetotal;"
     cur.execute(sql)
@@ -30,7 +30,7 @@ class sql_functions:
 
 
 def gainLife():
-    gain = sql_functions
+    gain = starting_life_list
     gain_life = int(input('Enter a number: '))
     gain_total = gain.life_list + gain_life
     
@@ -43,7 +43,7 @@ def gainLife():
 
 
 def loseLife():
-    lose = sql_functions
+    lose = starting_life_list
     lose_life = int(input ('Enter a number: '))
     lost_total = lose.life_list - lose_life
     
@@ -56,7 +56,7 @@ def loseLife():
 
 
 def resetLifeTotal():
-    reset = sql_functions(20)
+    reset = starting_life_list(20)
     
     cur.execute(
                 "UPDATE lifetotal "
