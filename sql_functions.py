@@ -5,25 +5,37 @@ import sqlite3
 conn =  sqlite3.connect('life.db')
 cur = conn.cursor()
 
-create_sql = "CREATE TABLE lifetotal(life INTEGER)"
+#
+# create_sql = "CREATE TABLE lifetotal(ID INTEGER PRIMARY KEY AUTOINCREMENT, life INTEGER)"
+# cur.execute("DROP TABLE IF EXISTS lifetotal")
 
-cur.execute("DROP TABLE IF EXISTS LIFETOTAL")
-cur.execute(create_sql)
+# cur.execute(create_sql)
 
-
-cur.execute("INSERT INTO LIFETOTAL (LIFE)"
-          "VALUES ('%d')" %\
-          (20))
+cur.execute("INSERT INTO lifetotal (life)"
+    "VALUES ('%d')" %\
+    (20))
 
 conn.commit()
 
-sql = "SELECT life FROM lifetotal;"
-cur.execute(sql)
-results = cur.fetchall()
+class sql_functions:
 
-g = int(results[0][0])
+    StartLife = 20
+
+    sql = "SELECT life FROM lifetotal;"
+    cur.execute(sql)
+    results = cur.fetchall()
+    g = int(results[0][0])
 
 
-g = g + 2
 
-print (g)
+
+ew = sql_functions
+
+
+gainonelife = int(input('Enter a number: '))
+onelife = ew.g + gainonelife
+
+cur.execute("UPDATE lifetotal SET life = ? WHERE ID = 1",
+        (onelife,))
+
+conn.commit()
