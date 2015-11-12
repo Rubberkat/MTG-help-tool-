@@ -33,9 +33,12 @@ def gainLife():
     gain = sql_functions
     gain_life = int(input('Enter a number: '))
     gain_total = gain.life_list + gain_life
-    cur.execute("UPDATE lifetotal "
+    
+    cur.execute(
+                "UPDATE lifetotal "
                 "SET life = ? WHERE ID = 1",
-                (gain_total,))
+                (gain_total,)
+    )
     conn.commit()
 
 
@@ -43,17 +46,23 @@ def loseLife():
     lose = sql_functions
     lose_life = int(input ('Enter a number: '))
     lost_total = lose.life_list - lose_life
-    cur.execute("UPDATE lifetotal "
+    
+    cur.execute(
+                "UPDATE lifetotal "
                 "SET life = ? WHERE ID = 1",
-                (lost_total,))
+                (lost_total,)
+    )
     conn.commit()
 
 
 def resetLifeTotal():
     reset = sql_functions(20)
-    cur.execute("UPDATE lifetotal "
+    
+    cur.execute(
+                "UPDATE lifetotal "
                 "SET life = ? WHERE ID = 1",
-                (reset.starting_life,))
+                (reset.starting_life,)
+    )
     conn.commit()
 
 
