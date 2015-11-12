@@ -9,11 +9,16 @@ cur = conn.cursor()
 # create_sql = "CREATE TABLE lifetotal(ID INTEGER PRIMARY KEY AUTOINCREMENT, life INTEGER)"
 # cur.execute("DROP TABLE IF EXISTS lifetotal")
 
+
+create_db = "CREATE TABLE IF NOT EXISTS lifetotal(ID INTEGER PRIMARY KEY AUTOINCREMENT, life INTEGER)"
+
+
+cur.execute(create_db)
 # cur.execute(create_sql)
 
-cur.execute("INSERT INTO lifetotal (life)"
-    "VALUES ('%d')" %\
-    (20))
+# cur.execute("INSERT INTO lifetotal (life)"
+#     "VALUES ('%d')" %\
+#     (20))
 
 conn.commit()
 
@@ -28,14 +33,15 @@ class sql_functions:
 
 
 
+def gainlife():
+    ew = sql_functions
 
-ew = sql_functions
 
+    gainonelife = int(input('Enter a number: '))
+    onelife = ew.g + gainonelife
 
-gainonelife = int(input('Enter a number: '))
-onelife = ew.g + gainonelife
+    cur.execute("UPDATE lifetotal SET life = ? WHERE ID = 1", (onelife,))
 
-cur.execute("UPDATE lifetotal SET life = ? WHERE ID = 1",
-        (onelife,))
+    conn.commit()
 
-conn.commit()
+gainlife()
